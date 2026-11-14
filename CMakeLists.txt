@@ -13,7 +13,8 @@ add_library(print_common OBJECT
   src/gdi_content.cpp)
 # ソースは BOM なし UTF-8 → /utf-8 を指定 (C4819 回避)。C++/WinRT は SDK 同梱ヘッダー (cppwinrt/) を使う。
 target_compile_options(print_common PRIVATE /utf-8 /W4 /EHsc /permissive-)
-target_compile_definitions(print_common PUBLIC UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+# WIN32_LEAN_AND_MEAN は OWL (wsysinc.h) が値なしで定義するので、値の食い違い (C4005) を避けるため空定義にそろえる
+target_compile_definitions(print_common PUBLIC UNICODE _UNICODE "WIN32_LEAN_AND_MEAN=" NOMINMAX)
 target_link_libraries(print_common PUBLIC windowsapp d3d11 dxgi)
 
 # ---- 素の Win32 版

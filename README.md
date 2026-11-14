@@ -48,7 +48,7 @@ VS2022 + Windows SDK 10.0.26100 (C++/WinRT ヘッダーは SDK 同梱)。
 - 渡すものは `TWindow::GetHandle()` の `HWND` だけ。OWL コアは COM を初期化しないので、`OwlMain` 先頭で `InitWinRt()` (STA)
 - OWL と C++/WinRT のヘッダーは翻訳単位を分けて混在させない (`print_ui.h` は windows.h のみ)
 - OWL 側の `_tmain` を使うため `/ENTRY:wmainCRTStartup` + `WIN32` (GUI サブシステム)
-- 警告 C4005 `WIN32_LEAN_AND_MEAN` 再定義 (OWL の `wsysinc.h` が定義) は無害
+- `WIN32_LEAN_AND_MEAN` は OWL (`wsysinc.h`) が値なしで定義する → こちらも空定義 (`WIN32_LEAN_AND_MEAN=`) にして C4005 を回避。警告 0
 
 ## 制限・未確認
 - 実印刷 (`MakeDocument`) は未実装 (`E_NOTIMPL`)。「印刷」ボタンは動作しない

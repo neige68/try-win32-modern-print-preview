@@ -26,6 +26,8 @@ GDI 描画を Windows 11 の新しい印刷 UI のプレビューに出す検証
 - classic COM を `implements` する前に `<unknwn.h>` を winrt ヘッダーより前に include
 - コールバック (`Paginate` / `MakePage` 等) は任意のスレッドから呼ばれる → `std::mutex` で直列化
 - OWL と C++/WinRT のヘッダーは同じ翻訳単位に入れない (`print_ui.h` は windows.h のみ)
+- `WIN32_LEAN_AND_MEAN` は `/D` で値 1 にしない (OWL が値なしで定義 → C4005)。`"WIN32_LEAN_AND_MEAN="` の空定義にする
+- 警告は 0 を維持する (クリーンビルドで確認)
 - OWL は `_tmain` を提供する → `WIN32` + `/ENTRY:wmainCRTStartup`
 
 ## ソース規約
