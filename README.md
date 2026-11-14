@@ -1,5 +1,7 @@
 # try-win32-modern-print-preview
 
+**日本語** | [English](README.en.md)
+
 Win32 (C++/WinRT) アプリで、GDI 描画を Windows 11 の新しい印刷 UI (プレビュー付き) のプレビューに表示できるかを検証する。
 実プリンターへの出力は対象外。
 
