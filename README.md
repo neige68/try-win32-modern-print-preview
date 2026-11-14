@@ -29,7 +29,7 @@ VS2022 + Windows SDK 10.0.26100 (C++/WinRT ヘッダーは SDK 同梱)。
     cmake -S . -B build -G "Visual Studio 17 2022" -A x64
     cmake --build build --config Release   # または --config Debug
 
-- OWL 版は環境変数 `OWLROOT` (例: `U:\lib\owl\owlnext-7.0.20-patched`) があるときだけビルドされる
+- OWL 版は環境変数 `OWLROOT` (OWLNext 7 のルートディレクトリ。`include/` と `lib/` を含む。検証は 7.0.20) があるときだけビルドされる
 - OWL の静的ライブラリ (`owl-7.0-v1930-x64-tu.lib`) が `/MT` なので、両版とも `/MT` (Debug は `/MTd` + `owl-7.0-v1930-x64-dtu.lib`。OWL の `__DEBUG` は `_DEBUG` から自動で 1 になるので追加設定は不要)。Release / Debug とも警告 0 を確認
 
 ## 実行・診断
@@ -54,3 +54,6 @@ VS2022 + Windows SDK 10.0.26100 (C++/WinRT ヘッダーは SDK 同梱)。
 - 実印刷 (`MakeDocument`) は未実装 (`E_NOTIMPL`)。「印刷」ボタンは動作しない
 - 未確認: ズーム時の再描画、Microsoft Print to PDF 以外のプリンター (余白 = `ImageableRect`)、x86、OCF/OLE 併用時の STA 整合
 - 本格導入の懸念: 実印刷経路 (`ID2D1PrintControl` 等) とプレビューの一致、コールバックが任意スレッドから来ること、大判用紙 × 高 DPI のメモリ (A3 @192dpi で約 28MB/ページ)、C++ の公式サンプルが無く挙動を実機で確かめている点
+
+## ライセンス
+MIT License (`LICENSE` 参照)。OWLNext は同梱しておらず、別途ライセンスに従って入手する。
