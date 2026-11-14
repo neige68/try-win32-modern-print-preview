@@ -7,7 +7,7 @@ GDI 描画を Windows 11 の新しい印刷 UI のプレビューに出す検証
 - CMake + VS2022 (x64 Release)。Windows SDK は `N:\Windows Kits\10` の 10.0.26100 (`-DCMAKE_SYSTEM_VERSION=10.0.26100.0` を付ける)
 - ビルド用スクリプトはリポジトリに置かず `/mnt/tmp/try-win32-modern-print-preview/` (= `C:\Temp\...`) に置く。ソースの Windows パスは `C:\Users\neige\git\try-win32-modern-print-preview`
 - exe の実行中は上書きできない (LNK1104)。再ビルド前に `Get-Process modern_print_preview* | Stop-Process -Force`
-- OWL 版は環境変数 `OWLROOT` が必要。OWL のライブラリは静的 `/MT` のため全ターゲットを `/MT` にそろえている (Debug 未検証)
+- OWL 版は環境変数 `OWLROOT` が必要。OWL のライブラリは静的 `/MT` のため全ターゲットを `/MT` (Debug は `/MTd`、OWL は `-dtu` ライブラリを自動リンク) にそろえている。Debug も `--config Debug` でそのままビルドできる
 - git 操作は Windows の git.exe (pwsh 経由)。コミットメッセージは `-F` でファイルから渡す
 
 ## 動作確認 (GUI)
